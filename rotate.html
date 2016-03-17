@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Rotate an image</title> 
+<style>
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  display:flex;
+  height: 100%;
+  flex-direction: column;
+}
+
+body {
+  display:flex;
+  flex-direction: column;
+  flex: 1;
+}
+header { 
+  display:flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+main { 
+  flex:1;
+
+  display:flex; 
+  flex-direction: column; 
+  padding: 1em;
+}
+
+input[type="range"]#degrees {
+  height: 60px;;
+  background:white;
+  border-radius: 5px;
+  padding: 1em;
+}
+
+figure { 
+  background:gray;
+  flex:1;
+}
+
+img {
+  flex:1;
+  max-width: 90%;
+  margin: 0 auto;
+  border: 1px solid black;
+}
+
+input[type="range"] {
+  flex-basis:100%;
+  flex:1;
+  width: 90vw;
+}
+</style>
+</head>
+<body>
+
+<header><h1>Rotate an image</h1> 
+  <input type=file>
+
+  <input type=range id=degrees min=-45 value=0 max=45 step=1>
+</header>
+
+<figure>
+<img src>
+</figure>
+
+<script>
+var 
+  slider = document.querySelector('input#degrees'),
+  loader = document.querySelector('input[type="file"]'),
+  img = document.querySelector('img');
+
+var update = ev => {
+  var  
+    degrees = ev.target.value;
+    transform = `rotate(${degrees}deg)`;
+
+  img.style.transform = transform;
+}
+
+var load = ev => {
+  img.src = URL.createObjectURL(loader.files[0])
+}
+
+slider.addEventListener('change', update);
+loader.addEventListener('change', load);
+</script>
+</body>
+</html>
